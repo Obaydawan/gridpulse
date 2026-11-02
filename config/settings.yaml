@@ -1,0 +1,10 @@
+paths:
+  data_dir: data
+  log_dir: logs
+
+duckdb:
+  memory_limit: 2GB
+  threads: 2
+
+logging:
+  level: INFO
