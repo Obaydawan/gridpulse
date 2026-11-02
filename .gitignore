@@ -1,0 +1,32 @@
+# --- Data (never commit datasets or derived data) ---
+data/*
+!data/README.md
+*.csv
+*.parquet
+*.duckdb
+*.zip
+*.z01
+*.z02
+
+# --- Secrets ---
+.env
+*.pem
+*.key
+
+# --- Python ---
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+*.egg-info/
+
+# --- Logs and tool output ---
+logs/
+dbt/target/
+dbt/logs/
+
+# --- Editor / OS ---
+.vscode/
+.DS_Store
