@@ -39,11 +39,31 @@
 - FLAG has only the values 0 (38,757 rows, 91.47%) and 1 (3,615 rows, 8.53%).
   These counts match the published description of the dataset.
 
+### Cell-level profile results (scripts/profile_sgcc_cells.py, run 2026-11-04)
+
+- 43,812,648 cells (42,372 customers x 1,034 date columns). The counted total
+  equals rows x date columns, so no cell was dropped by the unpivot.
+- Missing readings are empty cells: 11,233,528 (25.64%). There are no
+  blank-text cells, no NaN or infinity, no non-numeric text and no negative
+  values.
+- Missing rate by label (pooled over cells): FLAG=0 25.10%, FLAG=1 31.47%.
+  The per-customer distribution has not been examined yet.
+- Zero readings: 5,788,603. Positive readings: 26,790,517. Zero is a recorded
+  value and is not treated as missing.
+- Among present readings: minimum 0, maximum 800,003.32, approximate median
+  4.60, approximate 99th percentile 71.75, approximate 99.9th percentile
+  455.33 (all customers pooled). The theft-labelled readings have heavier upper
+  tails (99.9th percentile about 2,456 vs about 240), which is descriptive only.
+- The files do not state a unit of measurement.
+
 ### Open questions
 
 - Is the 2016-09-18 gap present in the official files?
-- How are missing readings encoded in the cells, and how many are there?
-- Are there negative, non-numeric or extreme readings?
+- Is missingness scattered, in long runs, or concentrated in some customers?
+  Are there customers with no readings at all or with constant readings?
+- How should extreme readings (maximum 800,003.32) be flagged? They are kept,
+  not removed.
+- What is the unit of measurement?
 
 ### Limitations
 
@@ -59,7 +79,7 @@
 - [x] Date columns validated (one calendar date has no column: 2016-09-18)
 - [x] Label values and class balance confirmed
 - [x] Customer id uniqueness confirmed
-- [ ] Missing-value encoding and rate measured
+- [x] Missing-value encoding and rate measured (25.64% empty cells)
 - [ ] Compared against the official IEEE-PES files when available
 
 ### Checksums (SHA-256)
