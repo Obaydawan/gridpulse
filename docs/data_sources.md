@@ -25,13 +25,25 @@
 - First date column: 1/1/2014. Last date column: 10/31/2016. The mirror page
   says the end date is 10/30/2016.
 
+### Profile results (scripts/profile_sgcc.py, run 2026-11-04)
+
+- DuckDB parsed 42,372 data rows, equal to the line count minus the header,
+  so there are no line breaks inside fields. The file uses CRLF line endings.
+- CONS_NO and FLAG are the last two columns (positions 1034 and 1035, counting
+  from 0). There are 1,034 date columns, all in M/D/YYYY format, in ascending
+  order, with no duplicates and no unparseable names.
+- Date range 2014-01-01 to 2016-10-31 (1,035 calendar days). The date
+  2016-09-18 has no column. Whether the gap exists in the original source or
+  was introduced by the mirror is unknown.
+- Customer ids: 42,372 distinct, none blank.
+- FLAG has only the values 0 (38,757 rows, 91.47%) and 1 (3,615 rows, 8.53%).
+  These counts match the published description of the dataset.
+
 ### Open questions
 
-- 1,036 fields minus CONS_NO and FLAG leaves 1,034 date columns, but
-  2014-01-01 to 2016-10-31 spans 1,035 days. A date may be missing or the
-  header may differ from expectations.
-- FLAG values, class balance, duplicate or empty customer ids, and how missing
-  readings are encoded are not yet checked.
+- Is the 2016-09-18 gap present in the official files?
+- How are missing readings encoded in the cells, and how many are there?
+- Are there negative, non-numeric or extreme readings?
 
 ### Limitations
 
@@ -44,9 +56,9 @@
 - [x] Archive checksum recorded
 - [x] Line count and header field count checked
 - [x] First and last date headers read
-- [ ] Date columns fully validated (gaps, duplicates, order)
-- [ ] Label values and class balance confirmed
-- [ ] Customer id uniqueness confirmed
+- [x] Date columns validated (one calendar date has no column: 2016-09-18)
+- [x] Label values and class balance confirmed
+- [x] Customer id uniqueness confirmed
 - [ ] Missing-value encoding and rate measured
 - [ ] Compared against the official IEEE-PES files when available
 
