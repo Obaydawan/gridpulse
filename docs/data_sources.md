@@ -56,14 +56,35 @@
   tails (99.9th percentile about 2,456 vs about 240), which is descriptive only.
 - The files do not state a unit of measurement.
 
+### Per-customer profile results (scripts/profile_sgcc_customers.py, run 2026-11-04)
+
+- Every customer has exactly 1,034 cells. No customer has all 1,034 readings.
+- Customers by share of missing readings: >0-10%: 20,997; >10-25%: 5,986;
+  >25-50%: 4,205; >50-75%: 10,790; >75% but not 100%: 389; 100%: 5.
+- Missing cells by type (11,233,528 in total): leading (before the first
+  reading) 8,130,471 (72.4%), interior (between first and last reading)
+  3,055,939 (27.2%), trailing 41,948 (0.4%), customers with no readings
+  5,170 (0.05%). Gap positions are column positions, so the absent date
+  2016-09-18 does not appear as a gap.
+- As a share of all cells: leading 18.44% (FLAG=0) vs 19.84% (FLAG=1);
+  interior 6.61% (FLAG=0) vs 10.85% (FLAG=1). Pooled over cells, descriptive
+  only.
+- 5 customers have no readings (2 with FLAG=0, 3 with FLAG=1). A label exists
+  for them but there is no consumption evidence in this dataset.
+- 2,109 customers have only zero readings (2,076 FLAG=0, 33 FLAG=1).
+- No customer has exactly one reading or a constant non-zero series.
+- Customers whose maximum reading exceeds 1,000: 406; 10,000: 43; 100,000: 6.
+  Of the five highest single readings, four belong to FLAG=0 customers.
+
 ### Open questions
 
 - Is the 2016-09-18 gap present in the official files?
-- Is missingness scattered, in long runs, or concentrated in some customers?
-  Are there customers with no readings at all or with constant readings?
-- How should extreme readings (maximum 800,003.32) be flagged? They are kept,
-  not removed.
-- What is the unit of measurement?
+- Why do leading gaps exist (later start of each customer's series, or later
+  data collection)? The file does not say.
+- What explains the 2,109 all-zero customers and the 5 customers with a label
+  but no readings?
+- What is the unit of measurement? Extreme readings are kept and flagged, not
+  removed.
 
 ### Limitations
 
@@ -80,6 +101,7 @@
 - [x] Label values and class balance confirmed
 - [x] Customer id uniqueness confirmed
 - [x] Missing-value encoding and rate measured (25.64% empty cells)
+- [x] Missingness structure per customer profiled (leading, interior, trailing)
 - [ ] Compared against the official IEEE-PES files when available
 
 ### Checksums (SHA-256)
