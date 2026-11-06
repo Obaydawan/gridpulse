@@ -23,6 +23,7 @@ class Settings:
     staging_dir: Path
     processed_dir: Path
     warehouse_dir: Path
+    pipeline_metadata_db: Path
     log_dir: Path
     duckdb_memory_limit: str
     duckdb_threads: int
@@ -36,11 +37,13 @@ def _resolve(path_str: str) -> Path:
 
 
 def load_settings(config_path: Path | None = None) -> Settings:
-    """Read the YAML file, then apply env overrides.
+    """Read the YAML file, then apply environment overrides.
 
     Environment overrides:
       GRIDPULSE_DATA_DIR  replaces paths.data_dir
       LOG_LEVEL           replaces logging.level
+
+    The pipeline metadata database path is relative to data_dir.
     """
     path = config_path or DEFAULT_CONFIG_PATH
     with path.open(encoding="utf-8") as f:
@@ -48,6 +51,14 @@ def load_settings(config_path: Path | None = None) -> Settings:
 
     data_dir = _resolve(os.environ.get("GRIDPULSE_DATA_DIR", raw["paths"]["data_dir"]))
     log_dir = _resolve(raw["paths"]["log_dir"])
+    metadata_db_relative = Path(raw["paths"]["pipeline_metadata_db"])
+
+    if metadata_db_relative.is_absolute():
+        raise ValueError(
+            "paths.pipeline_metadata_db must be relative to paths.data_dir"
+        )
+
+    pipeline_metadata_db = data_dir / metadata_db_relative
     log_level = os.environ.get("LOG_LEVEL", raw["logging"]["level"]).upper()
 
     return Settings(
@@ -57,6 +68,7 @@ def load_settings(config_path: Path | None = None) -> Settings:
         staging_dir=data_dir / "staging",
         processed_dir=data_dir / "processed",
         warehouse_dir=data_dir / "warehouse",
+        pipeline_metadata_db=pipeline_metadata_db,
         log_dir=log_dir,
         duckdb_memory_limit=str(raw["duckdb"]["memory_limit"]),
         duckdb_threads=int(raw["duckdb"]["threads"]),

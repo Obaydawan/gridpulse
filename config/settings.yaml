@@ -1,6 +1,7 @@
 paths:
   data_dir: data
   log_dir: logs
+  pipeline_metadata_db: warehouse/pipeline.duckdb
 
 duckdb:
   memory_limit: 2GB
