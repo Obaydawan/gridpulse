@@ -1,4 +1,4 @@
-# GridPuls
+# GridPulse
 
 An electricity data engineering platform: ingestion, validation, transformation
 and analytics for electricity consumption datasets.
