@@ -1,6 +1,6 @@
 # GridPulse
 
-An electricity data engineering Projec: ingestion, validation, transformation
+An electricity data engineering Project: ingestion, validation, transformation
 and analytics for electricity consumption datasets.
 
 > Status: in development (Phase 0: project setup).
