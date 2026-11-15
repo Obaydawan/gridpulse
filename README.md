@@ -1,4 +1,4 @@
-# GridPuls
+# GridPule
 
 An electricity data engineering Pipeline: ingestion, validation, transformation
 and analytics for electricity consumption datasets.
