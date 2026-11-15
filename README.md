@@ -5,7 +5,7 @@ and analytics for electricity consumption datasets.
 
 > Status: in development (Phase 0: project setup).
 
-## Goal
+## Goa
 
 Build a reproducible, locally runnable data pipeline that ingests electricity
 consumption data, validates it, models it for analytics, and produces
