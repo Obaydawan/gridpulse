@@ -12,7 +12,7 @@ consumption data, validates it, models it for analytics, and produces
 data-quality and consumption reports. It is also the data foundation for
 future electricity-theft research.
 
-## Planned architecture
+## Planned architectur
 
 Source files -> Python ingestion -> raw storage -> validation
 -> staging (Parquet) -> analytical models (DuckDB, dbt) -> reports
