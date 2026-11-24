@@ -7,7 +7,7 @@ and analytics for electricity consumption datasets.
 
 ## Goal
 
-Build a reproducible, locally runnable data pipeline that ingests electricit
+Build a reproducible, locally runnable data pipeline that ingests electricity
 consumption data, validates it, models it for analytics, and produces
 data-quality and consumption reports. It is also the data foundation for
 future electricity-theft research.
