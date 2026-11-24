@@ -3,11 +3,11 @@
 An electricity data engineering Pipeline: ingestion, validation, transformation
 and analytics for electricity consumption datasets.
 
-> Status: in development (Phase 0: project setup)
+> Status: in development (Phase 0: project setup).
 
 ## Goal
 
-Build a reproducible, locally runnable data pipeline that ingests electricity
+Build a reproducible, locally runnable data pipeline that ingests electricit
 consumption data, validates it, models it for analytics, and produces
 data-quality and consumption reports. It is also the data foundation for
 future electricity-theft research.
